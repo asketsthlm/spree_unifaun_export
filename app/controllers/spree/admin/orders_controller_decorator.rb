@@ -1,6 +1,6 @@
 Spree::Admin::OrdersController.class_eval do
   before_action :unifaunExport, only: :index
-  before_action :setPackageWeight
+  before_action :setPackageWeight, only: [:edit, :customer, :cancel, :resume, :approve, :resend, :adjustments, :cart]
 
   def unifaunExport
     @packageWeight = Spree::UnifaunExport::Config[:package_weight]
