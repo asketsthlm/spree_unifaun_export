@@ -1,7 +1,7 @@
 SpreeUnifaunExport
 ==================
 
-This extension allows you to export the Orders that you can see in the Orders view in the admin panel. It was made for an export for the Unifaun system but it's standard tab-delimited csv, so it would be easy to adapt it to a different need.
+This extension allows you to export addresses that you can see in the Orders view in the admin panel. It was made for an export for the Unifaun system but it's standard tab-delimited csv, so it would be easy to adapt it to a different need.
 
 Installation
 ------------

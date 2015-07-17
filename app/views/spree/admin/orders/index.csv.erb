@@ -1,6 +1,6 @@
 <%- headers = ['[quickid]','[sender]','[receiver]','[category1text]','[category2text]','[name]','[address1]','[address2]','[zipcode]','[city]','[state]','[country]','[contact]','[email]','[phone]','[sms]','[senderref]'] -%>
 <%- ordersToExport = @search.result(distinct: true) -%>
-<%= CSV.generate({col_sep: "\t"}) do |csv| =%>
+<%= CSV.generate({col_sep: "\t", encoding: "windows-1252"}) do |csv| =%>
   <%- csv << headers -%>
   <%- ordersToExport.each do |order| -%>
     <%- csv << [order.email,
