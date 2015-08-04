@@ -11,6 +11,6 @@ Deface::Override.new(
   name: 'status_order_index_tbody',
   insert_before: 'td.actions.actions-1',
   text: '
-  <td><%= order.shipments ? order.shipments.first.tracking_status : "" %></td>
+  <td><%= order.shipments ? order.shipments.last.tracking_status : "" %></td>
 '
 )
