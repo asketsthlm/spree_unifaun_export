@@ -15,7 +15,7 @@ Spree::Shipment.class_eval do
       end
       return Nokogiri::HTML(html).css('div#tracking_status div div div div div')[0].text
     else
-      return nil
+      return "Not tracked"
     end
   end
 
