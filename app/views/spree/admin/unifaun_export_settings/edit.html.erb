@@ -11,9 +11,9 @@
             <legend><%= Spree.t(:package_label, scope: :unifaun_export) %></legend>
 
             <div class="form-group">
-              <%= label_tag :package_weight, Spree.t(:package_weight, scope: :unifaun_export) %>
-              <%= preference_field_tag(:package_weight, Spree::UnifaunExport::Config[:package_weight], class: 'form-control') %>
-              <%= content_tag(:span, Spree.t(:package_weight_info, scope: :unifaun_export), class: 'info') %>
+              <%= label_tag :box_weight, Spree.t(:box_weight, scope: :unifaun_export) %>
+              <%= preference_field_tag(:box_weight, Spree::UnifaunExport::Config[:box_weight], class: 'form-control') %>
+              <%= content_tag(:span, Spree.t(:box_weight_info, scope: :unifaun_export), class: 'info') %>
             </div>
 
             <div class="form-group">
@@ -26,6 +26,11 @@
               <%= label_tag :contents, Spree.t(:contents, scope: :unifaun_export) %>
               <%= preference_field_tag(:contents, Spree::UnifaunExport::Config[:contents], class: 'form-control') %>
               <%= content_tag(:span, Spree.t(:contents_info, scope: :unifaun_export), class: 'info') %>
+            </div>
+
+            <div class="form-group">
+              <%= label_tag :encoding, Spree.t(:encoding, scope: :unifaun_export) %>
+              <%= select_tag(:encoding, options_for_select(Spree::PrintInvoice::Config.encodings.map(&:to_s), Spree::PrintInvoice::Config[:encoding]), class: 'select2') %>
             </div>
 
           </fieldset>

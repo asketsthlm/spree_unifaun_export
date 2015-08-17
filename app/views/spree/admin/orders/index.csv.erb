@@ -1,26 +1,52 @@
-<%- headers = ['[quickid]','[sender]','[receiver]','[category1text]','[category2text]','[name]','[address1]','[address2]','[zipcode]','[city]','[state]','[country]','[contact]','[email]','[phone]','[sms]','[senderref]'] -%>
+<%- if params[:template] == 'addresses' -%>
+  <%- headers = ['[quickid]','[sender]','[receiver]','[category1text]','[category2text]','[name]','[address1]','[address2]','[zipcode]','[city]','[state]','[country]','[contact]','[email]','[phone]','[sms]','[senderref]'] -%>
+<%- else -%>
+  <%- headers = ['[quickid]','[sender]','[receiver]','[category1text]','[category2text]','[name]','[address1]','[address2]','[zipcode]','[city]','[state]','[country]','[contact]','[email]','[phone]','[sms]','[senderref]'] -%>
+<%- end -%>
 <%- ordersToExport = @search.result(distinct: true) -%>
-<%= CSV.generate({col_sep: "\t", encoding: "iso-8859-1"}) do |csv| =%>
+<%= CSV.generate({col_sep: "\t", encoding: Spree::UnifaunExport::Config[:encoding]}) do |csv| =%>
   <%- csv << headers -%>
   <%- ordersToExport.each do |order| -%>
-    <%- csv << [order.email,
-               'N',
-               'Y',
-               order.shipments.first.shipping_method.admin_name,
-               order.quantity,
-               order.ship_address.firstname + ' ' + order.ship_address.lastname,
-               order.ship_address.address1,
-               order.ship_address.address2 != '' ? order.ship_address.address2 : nil,
-               order.ship_address.zipcode,
-               order.ship_address.city,
-               order.ship_address.state ? order.ship_address.state.name : nil,
-               order.ship_address.country.iso,
-               order.ship_address.firstname + ' ' + order.ship_address.lastname,
-               order.email,
-               order.ship_address.phone,
-               order.ship_address.phone,
-               order.number
-             ]
-  -%>
+    <%- if params[:template] == 'addresses' -%>
+      <%- csv << [order.email,
+                 'N',
+                 'Y',
+                 order.shipments.first.shipping_method.admin_name,
+                 order.quantity,
+                 order.ship_address.firstname + ' ' + order.ship_address.lastname,
+                 order.ship_address.address1,
+                 order.ship_address.address2 != '' ? order.ship_address.address2 : nil,
+                 order.ship_address.zipcode,
+                 order.ship_address.city,
+                 order.ship_address.state ? order.ship_address.state.name : nil,
+                 order.ship_address.country.iso,
+                 order.ship_address.firstname + ' ' + order.ship_address.lastname,
+                 order.email,
+                 order.ship_address.phone,
+                 order.ship_address.phone,
+                 order.number
+               ]
+     -%>
+    <%- else -%>
+      <%- csv << [order.email,
+                 'N',
+                 'Y',
+                 order.shipments.first.shipping_method.admin_name,
+                 order.quantity,
+                 order.ship_address.firstname + ' ' + order.ship_address.lastname,
+                 order.ship_address.address1,
+                 order.ship_address.address2 != '' ? order.ship_address.address2 : nil,
+                 order.ship_address.zipcode,
+                 order.ship_address.city,
+                 order.ship_address.state ? order.ship_address.state.name : nil,
+                 order.ship_address.country.iso,
+                 order.ship_address.firstname + ' ' + order.ship_address.lastname,
+                 order.email,
+                 order.ship_address.phone,
+                 order.ship_address.phone,
+                 order.number
+               ]
+    -%>
+    <%- end -%>
   <%- end -%>
 <%- end -%>
