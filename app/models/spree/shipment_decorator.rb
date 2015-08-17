@@ -8,20 +8,4 @@ Spree::Shipment.class_eval do
     return weight.to_i
   end
 
-  def tracking_status
-
-    begin
-      if self.tracking
-        html = Rails.cache.fetch(self.tracking, :expires_in => 3.hours) do
-          open("http://asketsthlm.aftership.com/"+self.tracking).read
-        end
-        return Nokogiri::HTML(html).css('div#tracking_status div div div div div')[0].text
-      else
-        return "Not tracked"
-      end
-    rescue
-      return "Not tracked"
-    end
-  end
-
 end
