@@ -30,7 +30,7 @@
 
             <div class="form-group">
               <%= label_tag :encoding, Spree.t(:encoding, scope: :unifaun_export) %>
-              <%= select_tag(:encoding, options_for_select(Spree::PrintInvoice::Config.encodings.map(&:to_s), Spree::PrintInvoice::Config[:encoding]), class: 'select2') %>
+              <%= select_tag(:encoding, options_for_select(Spree::UnifaunExport::Config.encodings.map(&:to_s), Spree::UnifaunExport::Config[:encoding]), class: 'select2') %>
             </div>
 
           </fieldset>
