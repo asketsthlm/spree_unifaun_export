@@ -10,8 +10,8 @@ Spree::Shipment.class_eval do
 
   def unifaun_reference
     reference = ""
-    self.inventory_units.each do |iu|
-      reference << "#{iu.quantity} #{iu.variant.sku}, "
+    self.line_items.each do |li|
+      reference << "#{li.quantity} #{li.variant.sku}, "
     end
     return reference.slice!(1..-2)
   end
