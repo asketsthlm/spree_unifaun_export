@@ -8,4 +8,12 @@ Spree::Shipment.class_eval do
     return weight.to_i
   end
 
+  def unifaun_reference
+    reference = ""
+    self.inventory_units.each do |iu|
+      reference << "#{iu.quantity} #{iu.variant.sku}, "
+    end
+    return reference.slice!(1..-2)
+  end
+
 end
