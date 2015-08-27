@@ -4,7 +4,7 @@
   <%- headers = ['[SenderQuickID]','[OrderNo]','[Name]','[Address1]','[Address2]','[Zipcode]','[City]','[State]','[Country]','[Email]','[Phone]','[Reference]','[Contents]','[NoOfPackages]','[Weight]'] -%>
 <%- end -%>
 <%- ordersToExport = @search.result(distinct: true) -%>
-<%= CSV.generate({col_sep: "\t", encoding: Spree::UnifaunExport::Config[:encoding]}).html_safe do |csv| =%>
+<%= CSV.generate({col_sep: "\t", encoding: Spree::UnifaunExport::Config[:encoding]}) do |csv| =%>
   <%- csv << headers -%>
   <%- ordersToExport.each do |order| -%>
     <%- if params[:template] == 'addresses' -%>
@@ -47,4 +47,4 @@
     -%>
     <%- end -%>
   <%- end -%>
-<%- end -%>
+<%- end .html_safe-%>
